@@ -1,0 +1,310 @@
+:root {
+  --header-height: 120px;
+  --navbar-height: 34px;
+  --header-with-search-height: calc(
+    var(--header-height) - var(--navbar-height)
+  );
+  --header-sort-bar-height: 46px;
+  --width-column-2: calc(100% / 12 * 2);
+  --width-column-10: calc(100% - var(--width-column-2));
+
+  --primary-color: #ee4d2d;
+  --white-color: #fff;
+  --black-color: #000;
+  --light-gray-color: #f5f5f5;
+  --light-gray-color-2: #d1cfcf;
+  --shadow-color: #f0f0f0;
+  --text-color: #333;
+  --separate-color: #fb9086;
+  --header-top-color: #f53e2d;
+  --header-bottom-color: #fe6433;
+  --border-color: #dbdbdb;
+  --tag-shop-color: #ca0104;
+
+  --item-category-1-color: #87afd8;
+  --item-category-2-color: #76c9bd;
+  --item-category-3-color: #88cf81;
+}
+
+* {
+  box-sizing: inherit;
+  /* tất cả các element sẽ được inherit (kế thừa) border-box*/
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  box-sizing: border-box;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+
+.grid__column-2 {
+  padding: 0 5px;
+  width: var(--width-column-2);
+}
+
+/* pick 5 col of 12 col => 1 col = 2.4; 5 col = 100% => 1 col = 20% */
+.grid__column-2-4 {
+  padding: 0 5px;
+  width: 20%;
+}
+
+.grid__column-10 {
+  padding: 0 5px;
+  width: var(--width-column-10);
+}
+
+/* animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: -30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: fadeIn ease 0.3s;
+}
+.modal.open {
+  display: flex;
+}
+
+.modal__body {
+  position: relative;
+  margin: auto;
+  z-index: 1;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 142px;
+  height: 36px;
+  padding: 2px 6px 0;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  user-select: none;
+  background-color: var(--white-color);
+}
+
+.btn.btn--size-s {
+  height: 32px;
+  font-size: 12px;
+}
+
+.btn:hover {
+  background-color: var(--light-gray-color);
+}
+
+.btn.btn--primary {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+
+.btn.btn--primary:hover {
+  opacity: 0.8;
+}
+
+.btn.btn--disable {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* selection */
+.select-input {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  min-width: 200px;
+  height: 34px;
+  border-radius: 2px;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.select-input .select-input__label {
+  display: inline-block;
+  font-size: 1.5rem;
+  user-select: none;
+  color: var(--text-color);
+}
+
+.select-input .select-input__list {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  padding-left: 0;
+  list-style: none;
+  background-color: var(--white-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
+
+.select-input .select-input__list:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+}
+
+.select-input__list .select-input__item:first-child {
+  border-bottom: 1px solid #eee;
+}
+
+.select-input__item .select-input__link {
+  display: block;
+  padding: 16px;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.select-input__item .select-input__link:hover {
+  color: var(--primary-color);
+}
+
+.select-input:hover .select-input__list {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* tag inside card*/
+.tag-inside-card {
+  background-color: var(--tag-shop-color);
+  color: var(--white-color);
+  padding: 2px 4px;
+  font-size: 1rem;
+  border-radius: 4px;
+  font-weight: 400;
+}
+
+/* begin: tag above card
+  ex:
+  <div class="tag-above-card">
+    <span>Yêu thích</span>
+  </div>
+*/
+
+.tag-above-card {
+  position: absolute;
+  top: 6px;
+  left: -3px;
+  color: var(--primary-color);
+  background-color: currentColor;
+  padding: 0 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.tag-above-card span {
+  color: var(--white-color);
+}
+
+.tag-above-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  border-top: 3px solid currentColor;
+  border-left: 3px solid transparent;
+  filter: brightness(60%);
+}
+/* end: tag above card */
+
+/* begin: tag sale off card
+  ex:
+  <div class="tag-sale-off-card">
+    <div class="sale-off__percent">35%</div>
+    <div class="sale-off__label">Giảm</div>
+  </div>
+*/
+.tag-sale-off-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 36px;
+  color: rgba(255, 216, 64, 0.9);
+  background-color: currentColor;
+  border-top-right-radius: 2px;
+}
+
+.tag-sale-off-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  border-width: 0 20px 4px;
+  border-style: solid;
+  border-color: transparent currentColor transparent currentColor;
+}
+
+.tag-sale-off-card .sale-off__percent {
+  color: #ee4d2d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+.tag-sale-off-card .sale-off__label {
+  color: var(--white-color);
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+/* end: tag sale off card */

@@ -203,11 +203,16 @@
     padding: 0 8px;
   }
 
-  .footer__heading {
+  .footer__heading,
+  .footer-item__link {
     text-align: center;
   }
-  .footer__download,
+
   .footer-item__link {
+    justify-content: center;
+    text-align: center;
+  }
+  .footer__download {
     justify-content: center;
   }
 }
